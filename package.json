@@ -1,0 +1,27 @@
+{
+  "name": "sauce-test",
+  "version": "0.0.0",
+  "description": "The easy way to run unit tests on sauce-labs and in chromedriver",
+  "keywords": [],
+  "dependencies": {
+    "browserify": "^8.1.0",
+    "cabbie": "https://github.com/ForbesLindesay/cabbie/archive/master.tar.gz",
+    "chalk": "^0.5.1",
+    "chromedriver": "^2.12.0",
+    "ms": "^0.7.0",
+    "promise": "^6.0.1",
+    "source-mapper": "^1.0.1",
+    "then-request": "^1.1.0",
+    "throat": "^1.0.0"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "node test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/ForbesLindesay/sauce-test.git"
+  },
+  "author": "ForbesLindesay",
+  "license": "MIT"
+}
