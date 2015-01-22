@@ -50,6 +50,8 @@ function runTests(entries, remote, options) {
         testPassed: options.testPassed,
         bail: options.bail,
         timeout: options.timeout,
+        onStart: options.onStart,
+        onQueue: options.onQueue,
         onResult: options.onResult,
         onBrowserResults: options.onBrowserResults
       });
@@ -66,6 +68,8 @@ function runTests(entries, remote, options) {
         testPassed: options.testPassed,
         bail: options.bail,
         timeout: options.timeout,
+        onStart: options.onStart,
+        onQueue: options.onQueue,
         onResult: options.onResult,
         onBrowserResults: options.onBrowserResults
       });
