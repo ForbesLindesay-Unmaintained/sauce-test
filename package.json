@@ -1,6 +1,6 @@
 {
   "name": "sauce-test",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "The easy way to run unit tests on sauce-labs and in chromedriver",
   "keywords": [],
   "dependencies": {
