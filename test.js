@@ -28,6 +28,22 @@ run(__dirname + '/empty.js', 'saucelabs', {
   },
   bail: true,
   timeout: '15s'
+}).then(function (results) {
+  console.dir(results);
+  return run(__dirname + '/empty.js', 'saucelabs', {
+    username: USER,
+    accessKey: ACCESS_KEY,
+    testComplete: 'return true;',
+    testPassed: 'return true;',
+    choosePlatforms: function (platforms) {
+      return [platforms[0]];
+    },
+    bail: true,
+    timeout: '15s',
+    onResult: function (result) {
+      console.log('browser result');
+    }
+  });
 }).done(function (results) {
   console.dir(results);
 });
