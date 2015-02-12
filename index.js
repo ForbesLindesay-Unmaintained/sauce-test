@@ -8,14 +8,18 @@ var runSauceLabs = require('./lib/run-sauce-labs');
 var runBrowsers = require('./lib/run-browsers');
 
 module.exports = runTests;
+module.exports.publishCode = publishCode;
 function runTests(entries, remote, options) {
   if (remote === 'chromedriver') {
     chromedriver.start();
   }
   return publishCode(entries, {
+    browserify: options.browserify,
     libraries: options.libraries,
-    disableSSL: options.disableSSL,
-    browserify: options.browserify
+    style: options.style,
+    stylesheets: options.stylesheets,
+    html: options.html,
+    disableSSL: options.disableSSL
   }).then(function (location) {
     if (!options.silent) {
       console.log('To view tests in a browser, navigate to: ' + chalk.magenta(location.url));
