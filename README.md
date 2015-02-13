@@ -88,10 +88,12 @@ The following options are specific to saucelabs and are ignored by other remotes
  - **filterPlatforms** - if you don't specify a set of platforms, sauce-test will automatically load the complete list of platforms. You can filter these by providng a `filterPlatforms` function. e.g.
 
   ```js
-  filterPlatforms: (platform) => platform.browserName === 'chrome'
+  filterPlatforms: (platform, defaultFilter) => platform.browserName === 'chrome' && defaultFilter(platform)
   ```
 
- - **choosePlatforms** - if you don't specify a set of platforms, sauce-test will automatically load the complete list of platforms.  The `choosePlatforms` function takes an array of identical browsers for different operating systems and allows you to return just the platforms you actually want to test on. e.g.
+  The default is to omit development and beta browsers, and only test every 5th version of chrome and firefox below 35 and 30 respectively.
+
+ - **choosePlatforms** - if you don't specify a set of platforms, sauce-test will automatically load the complete list of platforms.  The `choosePlatforms` function takes an array of identical browsers for different operating systems and allows you to return just the platforms you actually want to test on. By default, a random platform is selected using code like:
 
   ```js
   choosePlatforms: (platforms) => [platforms[Math.floor(Math.random() * platforms.length)]]
@@ -140,13 +142,15 @@ The following options are specific to saucelabs and are ignored by other remotes
 
  - **platforms** - the set of platforms to test on
 
- - **onQueue** - function to be called when a new test is queued (given the platform object)
+ - **onQueue** - function to be called when a new test is queued (given the platform object) - defaults to a no-op
 
- - **onStart** - function to be called when a new test is started (given the platform object)
+ - **onStart** - function to be called when a new test is started (given the platform object) - defaults to a no-op
 
- - **onResult** - function to be called when a test is finished (given the platform object along with a `passed` property)
+ - **onResult** - function to be called when a test is finished (given the platform object along with a `passed` property) - defaults to a function that logs the result, pass `false` or `{silent: true}` to disable.
 
- - **onBrowserResults** - given an array of platforms once a given browser has finished
+ - **onBrowserResults** - given an array of platforms once a given browser has finished - defaults to a function that logs the results, pass `false` or `{silent: true}` to disable.
+
+ - **onAllResults** - called once all tests have completed, and passed the end results - defaults to a function that logs the results, pass `false` or `{silent: true}` to disable.
 
 ## License
 
