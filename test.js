@@ -7,6 +7,15 @@ var run = require('./');
 var USER = 'then-jsonp';
 var ACCESS_KEY = 'beb60500-a585-440c-82e9-0888d716570d';
 
+run(__dirname + '/empty.js', 'jsdom', {
+  name: 'local-tests',
+  testComplete: 'return true;',
+  testPassed: 'return true;'
+}).done(function (result) {
+  assert(result.passed === true);
+  console.dir(result);
+});
+
 run(__dirname + '/empty.js', 'chromedriver', {
   name: 'local-tests',
   testComplete: 'return true;',

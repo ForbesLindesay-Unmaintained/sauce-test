@@ -14,6 +14,9 @@
     "then-request": "^2.1.0",
     "throat": "^1.0.0"
   },
+  "optionalDependencies": {
+    "jsdom": "^5.6.1"
+  },
   "devDependencies": {},
   "scripts": {
     "test": "node test"

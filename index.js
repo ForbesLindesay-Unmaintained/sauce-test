@@ -3,6 +3,7 @@
 var addDefaultLoggingAndName = require('./lib/default-logging');
 var chromedriver = require('./lib/chromedriver');
 var publishCode = require('./lib/publish-code');
+var runJsdom = null
 var runChromedriver = require('./lib/run-chromedriver');
 var runSauceLabs = require('./lib/run-sauce-labs');
 var runBrowsers = require('./lib/run-browsers');
@@ -24,7 +25,21 @@ function runTests(entries, remote, options) {
     disableSSL: options.disableSSL
   }).then(function (location) {
     options.onPublish(location.url);
-    if (remote === 'chromedriver') {
+    if (remote === 'jsdom') {
+      if (!runJsdom) runJsdom = require('./lib/run-jsdom');
+      return runJsdom(location, remote, {
+        name: options.name,
+        throttle: options.throttle,
+        debug: options.debug,
+        allowExceptions: options.allowExceptions,
+        testComplete: options.testComplete,
+        testPassed: options.testPassed,
+        timeout: options.timeout
+      }).then(function (result) {
+        options.onAllResults(result);
+        return result;
+      });
+    } else if (remote === 'chromedriver') {
       return runChromedriver(location, remote, {
         name: options.name,
         throttle: options.throttle,
