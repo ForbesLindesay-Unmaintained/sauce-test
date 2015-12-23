@@ -3,7 +3,7 @@
 The easy way to run unit tests on sauce-labs and in chromedriver
 
 [![Build Status](https://img.shields.io/travis/ForbesLindesay/sauce-test/master.svg)](https://travis-ci.org/ForbesLindesay/sauce-test)
-[![Dependency Status](https://img.shields.io/gemnasium/ForbesLindesay/sauce-test.svg)](https://gemnasium.com/ForbesLindesay/sauce-test)
+[![Dependency Status](https://img.shields.io/david/ForbesLindesay/sauce-test.svg)](https://david-dm.org/ForbesLindesay/sauce-test)
 [![NPM version](https://img.shields.io/npm/v/sauce-test.svg)](https://www.npmjs.org/package/sauce-test)
 
 ## Installation
