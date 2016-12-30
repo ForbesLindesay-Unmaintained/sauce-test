@@ -16,6 +16,25 @@ run(__dirname + '/empty.js', 'chromedriver', {
   console.dir(result);
 });
 
+run.runTestsAtLocation({url: 'http://example.com'}, 'chromedriver', {
+  name: 'custom-tests',
+  testComplete: () => Promise.resolve(true),
+  testPassed: (cabbie) => {
+    return cabbie.getSyncDriver().then(driver => {
+      const window = driver.browser().activeWindow();
+      const title = window.getElement('h1');
+      assert(title.isDisplayed() === true);
+      assert(title.getText().trim() === 'Example Domain');
+      return true;
+    }).catch(ex => {
+      console.error(ex.stack);
+      return false;
+    });
+  }
+}).done(function (results) {
+  console.dir(results);
+});
+
 run(__dirname + '/empty.js', 'saucelabs', {
   username: USER,
   accessKey: ACCESS_KEY,

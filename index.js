@@ -10,15 +10,19 @@ var runBrowsers = require('./lib/run-browsers');
 module.exports = runTests;
 module.exports.publishCode = publishCode;
 module.exports.runTestsAtLocation = runTestsAtLocation;
-function runTestsAtLocation(location, remote, options) {
+function runTestsAtLocation(location, remote, options, _chromedriverStarted) {
   addDefaultLoggingAndName(options);
   if (remote === 'chromedriver') {
+    if (!_chromedriverStarted) {
+      chromedriver.start();
+    }
     return runChromedriver(location, remote, {
       name: options.name,
       throttle: options.throttle,
       platform: options.platform,
       capabilities: options.capabilities,
       debug: options.debug,
+      httpDebug: options.httpDebug,
       allowExceptions: options.allowExceptions,
       testComplete: options.testComplete,
       testPassed: options.testPassed,
@@ -41,6 +45,7 @@ function runTestsAtLocation(location, remote, options) {
       throttle: options.throttle,
       capabilities: options.capabilities,
       debug: options.debug,
+      httpDebug: options.httpDebug,
       jobInfo: options.jobInfo,
       allowExceptions: options.allowExceptions,
       testComplete: options.testComplete,
@@ -67,6 +72,7 @@ function runTestsAtLocation(location, remote, options) {
       throttle: options.throttle,
       capabilities: options.capabilities,
       debug: options.debug,
+      httpDebug: options.httpDebug,
       allowExceptions: options.allowExceptions,
       testComplete: options.testComplete,
       testPassed: options.testPassed,
@@ -86,7 +92,7 @@ function runTestsAtLocation(location, remote, options) {
   }
 }
 function runTests(entries, remote, options) {
-  if (remote === 'chromedriver') {
+  if (remote === 'chromedriver' && !options.chromedriverStarted) {
     chromedriver.start();
   }
   addDefaultLoggingAndName(options);
@@ -100,6 +106,6 @@ function runTests(entries, remote, options) {
     disableSSL: options.disableSSL
   }).then(location => {
     options.onPublish(location.url);
-    return runTestsAtLocation(location, remote, options);
+    return runTestsAtLocation(location, remote, options, options.chromedriverStarted || remote === 'chromedriver');
   });
 }
