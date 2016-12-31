@@ -4,6 +4,7 @@ var addDefaultLoggingAndName = require('./lib/default-logging');
 var chromedriver = require('./lib/chromedriver');
 var publishCode = require('./lib/publish-code');
 var runChromedriver = require('./lib/run-chromedriver');
+var runBrowserStack = require('./lib/run-browser-stack');
 var runSauceLabs = require('./lib/run-sauce-labs');
 var runBrowsers = require('./lib/run-browsers');
 
@@ -32,6 +33,36 @@ function runTestsAtLocation(location, remote, options, _chromedriverStarted) {
     }).then(function (result) {
       options.onAllResults(result);
       return result;
+    });
+  } else if (remote.indexOf('browserstack') !== -1) {
+    return runBrowserStack(location, remote, {
+      name: options.name,
+      username: options.username,
+      accessKey: options.accessKey,
+      filterPlatforms: options.filterPlatforms,
+      choosePlatforms: options.choosePlatforms,
+      parallel: options.parallel,
+      platforms: options.platforms,
+      throttle: options.throttle,
+      capabilities: options.capabilities,
+      debug: options.debug,
+      httpDebug: options.httpDebug,
+      jobInfo: options.jobInfo,
+      allowExceptions: options.allowExceptions,
+      testComplete: options.testComplete,
+      testPassed: options.testPassed,
+      bail: options.bail,
+      timeout: options.timeout,
+      onStart: options.onStart,
+      onQueue: options.onQueue,
+      onResult: options.onResult,
+      onBrowserResults: options.onBrowserResults
+    }).then(function (results) {
+      if (results.passedBrowsers && results.failedBrowsers) {
+        results.passed = results.failedBrowsers.length === 0;
+      }
+      options.onAllResults(results);
+      return results;
     });
   } else if (remote.indexOf('saucelabs') !== -1) {
     return runSauceLabs(location, remote, {
