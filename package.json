@@ -1,11 +1,11 @@
 {
   "name": "sauce-test",
-  "version": "1.2.1",
+  "version": "1.2.2",
   "description": "The easy way to run unit tests on sauce-labs and in chromedriver",
   "keywords": [],
   "dependencies": {
     "browserify": "^8.1.0",
-    "cabbie": "0.2.2",
+    "cabbie": "0.2.3",
     "chalk": "^0.5.1",
     "chromedriver": "^2.26.1",
     "ms": "^0.7.0",
