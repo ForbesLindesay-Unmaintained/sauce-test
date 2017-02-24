@@ -4,15 +4,15 @@
   "description": "The easy way to run unit tests on sauce-labs and in chromedriver",
   "keywords": [],
   "dependencies": {
-    "browserify": "^8.1.0",
-    "cabbie": "0.2.3",
-    "chalk": "^0.5.1",
+    "browserify": "^14.1.0",
+    "cabbie": "0.5.1",
+    "chalk": "^1.1.3",
     "chromedriver": "^2.26.1",
     "ms": "^0.7.0",
-    "promise": "^6.0.1",
-    "source-mapper": "^1.0.1",
+    "promise": "^7.1.1",
+    "source-mapper": "^2.0.0",
     "then-request": "^2.1.0",
-    "throat": "^1.0.0"
+    "throat": "^3.0.0"
   },
   "devDependencies": {},
   "scripts": {
