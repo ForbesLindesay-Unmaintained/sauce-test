@@ -1,5 +1,7 @@
 # sauce-test
 
+[![Greenkeeper badge](https://badges.greenkeeper.io/ForbesLindesay/sauce-test.svg)](https://greenkeeper.io/)
+
 The easy way to run unit tests on sauce-labs and in chromedriver
 
 [![Build Status](https://img.shields.io/travis/ForbesLindesay/sauce-test/master.svg)](https://travis-ci.org/ForbesLindesay/sauce-test)
